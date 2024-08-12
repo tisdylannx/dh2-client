@@ -2180,6 +2180,15 @@ class BattleTooltips {
 			value.itemModify(1.2);
 			return value;
 		}
+		// Big Root
+		if (itemName === 'Big Root') {
+			if (move.flags && 'drain' in move.flags) {
+				value.itemModify(1.3)
+			} else {
+				value.itemModify(0.7)
+			}
+			return value
+		}
 
 		// Type-enhancing items
 		if (BattleTooltips.itemTypes[item.name] === moveType) {
@@ -2595,6 +2604,10 @@ class BattleStatGuesser {
 		}
 		if (itemid === 'assaultvest') {
 			specialBulk *= 1.5;
+		}
+		if (itemid === 'assaultvest') {
+			physicalBulk *= 1.3;
+			specialBulk *= 1.3;
 		}
 
 		let bulk = physicalBulk + specialBulk;
