@@ -2181,16 +2181,9 @@ class BattleTooltips {
 			return value;
 		}
 		// Big Root
-		if (itemName === 'Big Root') {
-			if (this.battle.tier.includes("sillymons")) {
-				value.itemModify(1.3)
-				if (!move.drain && move.hasOwnProperty('drain')) {
-					value.itemModify(0.7)
-				}
-			}
-			return value
+		if (itemName === 'Big Root' && move.flags['drain'] && this.battle.tier.includes("SillyMons")) {
+			value.itemModify(1.3);
 		}
-
 		// Type-enhancing items
 		if (BattleTooltips.itemTypes[item.name] === moveType) {
 			value.itemModify(this.battle.gen < 4 ? 1.1 : 1.2);
@@ -2241,7 +2234,7 @@ class BattleTooltips {
 			} else if (itemName === 'Baseball Bat' && move.flags['contact']) {
 				value.itemModify(1.25);
 			} else if (itemName === 'Tie-Dye Band') {
-				if (this.pokemonHasType(pokemon, moveType)) {
+				if (this.pokemonHasType(value.pokemon, moveType)) {
 					value.itemModify(0.67);
 				} else {
 					value.itemModify(1.3);
