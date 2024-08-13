@@ -2182,10 +2182,11 @@ class BattleTooltips {
 		}
 		// Big Root
 		if (itemName === 'Big Root') {
-			if (move.flags && 'drain' in move.flags) {
+			if (this.battle.tier.includes("sillymons")) {
 				value.itemModify(1.3)
-			} else {
-				value.itemModify(0.7)
+				if (!move.drain && move.hasOwnProperty('drain')) {
+					value.itemModify(0.7)
+				}
 			}
 			return value
 		}
